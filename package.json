@@ -1,0 +1,64 @@
+{
+  "name": "redux-valid-form",
+  "version": "0.0.0",
+  "description": "Declarative forms for your React Redux applications with inbuild validation",
+  "main": "lib/index.js",
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "nyc ava",
+    "lint": "eslint index.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm run babel",
+    "babel": "babel src --out-dir lib",
+    "prepush": "npm test"
+  },
+  "repository": "https://github.com/aichbauer/redux-valid-form.git",
+  "author": "Lukas Aichbauer <l.aichbauer@gmail.com>",
+  "license": "MIT",
+  "ava": {
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "babel": "inherit"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "dependencies": {
+    "input-is": "^1.1.1",
+    "prop-types": "^15.5.8",
+    "styled-components": "^1.4.6",
+    "warning-message": "^1.1.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-cli": "^6.24.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.12.0",
+    "enzyme": "^2.8.2",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^7.0.1",
+    "husky": "^0.13.2",
+    "jsdom": "^11.0.0",
+    "nyc": "^10.1.2",
+    "react": "^15.5.4",
+    "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-test-renderer": "^15.5.4",
+    "redux": "^3.6.0",
+    "redux-mock-store": "^1.2.3",
+    "redux-thunk": "^2.2.0",
+    "sinon": "^2.3.1"
+  }
+}

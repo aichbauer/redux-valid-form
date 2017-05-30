@@ -1,0 +1,15 @@
+# modules
+node_modules
+npm-debug.log
+
+# generated
+lib
+.nyc*
+coverage
+yarn-error.log
+
+# macOS
+.DS_STORE
+
+# IDE / Editors
+.vscode

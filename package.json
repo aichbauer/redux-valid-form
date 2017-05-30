@@ -1,6 +1,6 @@
 {
   "name": "redux-valid-form",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Declarative forms for your React Redux applications with inbuild validation",
   "main": "lib/index.js",
   "scripts": {

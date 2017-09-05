@@ -10,12 +10,13 @@ import {
 } from '../../src/actions/input';
 
 test('addInput returns type: ADD_INPUT', (t) => {
-  t.deepEqual(addInput('1', '1', 'testerror', 'testvalue', true, false, 'text', {}), {
+  t.deepEqual(addInput('1', '1', 'testerror', 'testvalue', false, true, false, 'text', {}), {
     type: 'ADD_INPUT',
     id: '1',
     formId: '1',
     error: 'testerror',
     value: 'testvalue',
+    checked: false,
     isFocused: true,
     isValid: false,
     inputType: 'text',

@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import {
   Form,
   Button,
+  Checkbox,
   Date,
   Datetime,
   Email,
   Number,
   Password,
   Phonenumber,
+  Radio,
   Text,
   Textarea,
   Time,
@@ -55,7 +57,10 @@ class Index extends React.Component {
             Redux Valid Form
           </Title>
           <Form id="1">
-            <Date id="date" required="true" />
+            <Checkbox id="checkbox" value="Vehicle" name="Vehicle" required="true" />
+            <Radio id="radio-1" value="Car" name="vehicle" checked />
+            <Radio id="radio-2" value="Bicycle" name="vehicle" />
+            {/* <Date id="date" required="true" />
             <Datetime id="datetime" required="true" />
             <Email id="email" required="true" />
             <Number id="number" required="true" min={2} max={4} />
@@ -63,7 +68,7 @@ class Index extends React.Component {
             <Phonenumber id="phonenumber" required="true" />
             <Text id="text" required="true" min={5} max={20} />
             <Textarea id="textarea" required="true" />
-            <Time id="time" required="true" />
+            <Time id="time" required="true" />*/}
             <Button value="Click me!" onClick={(results) => this.handleOnClick(results)} />
           </Form>
         </Wrapper>

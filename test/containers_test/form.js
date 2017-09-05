@@ -74,7 +74,6 @@ test('Form | mount with inputs check state', async (t) => {
   t.is(store.getState().reduxValidInput[0].value, '');
 
   const selectInputWrapper = formWrapper.find('#form-1-child-0');
-  const selectButtonWrapper = formWrapper.find('#form-1-child-2');
 
   selectInputWrapper.simulate('change', { target: { value: 'CHANGE' } });
 

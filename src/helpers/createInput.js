@@ -2,11 +2,13 @@
 
 import React from 'react';
 
+import Checkbox from '../components/form-inputs/checkbox';
 import Date from '../components/form-inputs/date';
 import Datetime from '../components/form-inputs/datetime';
 import Email from '../components/form-inputs/email';
 import Number from '../components/form-inputs/number';
 import Phonenumber from '../components/form-inputs/phonenumber';
+import Radio from '../components/form-inputs/radiobutton';
 import Text from '../components/form-inputs/text';
 import Textarea from '../components/form-inputs/textarea';
 import Time from '../components/form-inputs/time';
@@ -14,6 +16,21 @@ import Button from '../components/buttons/button';
 
 const createInput = (inputType, key, formId, props) => {
   switch (inputType) {
+    case 'Checkbox':
+      return (
+        <Checkbox
+          type="checkbox"
+          key={key}
+          data-form-id={formId}
+
+          id={key}
+          className={props.className}
+          required={props.required}
+          value={props.value}
+          name={props.name}
+          checked={props.checked}
+        />
+      );
     case 'Button':
       return (
         <Button
@@ -116,6 +133,21 @@ const createInput = (inputType, key, formId, props) => {
           min={props.min}
           max={props.max}
           placeholder={props.placeholder}
+        />
+      );
+    case 'Radio':
+      return (
+        <Radio
+          type="radio"
+          key={key}
+          data-form-id={formId}
+
+          id={key}
+          className={props.className}
+          required={props.required}
+          value={props.value}
+          name={props.name}
+          checked={props.checked}
         />
       );
     case 'Text':

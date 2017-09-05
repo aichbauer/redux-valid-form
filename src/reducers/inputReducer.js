@@ -4,6 +4,7 @@ import {
   CHANGE_INPUT_FOCUS,
   CHANGE_INPUT_VALUE,
   CHANGE_INPUT_VALIDATION,
+  CHANGE_INPUT_CHECKED,
   RESET_INPUTS,
 } from '../actions/input';
 
@@ -17,7 +18,9 @@ const input = (state = [], action) => {
           id: action.id,
           formId: action.formId,
           error: action.error,
+          name: action.name,
           value: action.value,
+          checked: action.checked,
           isFocused: action.isFocused,
           isValid: action.isValid,
           inputType: action.inputType,
@@ -51,6 +54,17 @@ const input = (state = [], action) => {
         if (item.id === action.id) {
           return Object.assign({}, item, {
             value: action.value,
+          });
+        }
+
+        return item;
+      });
+
+    case CHANGE_INPUT_CHECKED:
+      return state.map(item => {
+        if (item.id === action.id) {
+          return Object.assign({}, item, {
+            checked: action.checked,
           });
         }
 

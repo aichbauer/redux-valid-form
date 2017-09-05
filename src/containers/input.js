@@ -13,6 +13,7 @@ import {
   changeInputFocus,
   changeInputValidation,
   changeInputValue,
+  changeInputChecked,
 } from '../actions/input';
 
 import {
@@ -30,10 +31,24 @@ import validateComponent from '../helpers/validateComponent';
 export class Input extends React.Component {
   handleOnChange(event) {
     const id = this.props.id;
-    const isValid = validateComponent(this.props, event.target.value);
+    let isValid = false;
 
-    this.props.changeInputValue(id, event.target.value);
-    this.props.changeInputError(id, componentWarningMessage(this.props, event.target.value));
+    if (event.target.type === 'checkbox' ||
+      event.target.type === 'radio') {
+      isValid = validateComponent(this.props, event.target.checked);
+      this.props.changeInputChecked(id, event.target.checked);
+      this.props.input.forEach((item) => {
+        if (item.name === event.target.name &&
+          item.id !== id) {
+          this.props.changeInputChecked(item.id, false);
+        }
+      });
+      this.props.changeInputError(id, componentWarningMessage(this.props, event.target.checked));
+    } else {
+      isValid = validateComponent(this.props, event.target.value);
+      this.props.changeInputValue(id, event.target.value);
+      this.props.changeInputError(id, componentWarningMessage(this.props, event.target.value));
+    }
 
     new Promise((resolve) => {
       resolve(this.props.changeInputValidation(id, isValid));
@@ -114,6 +129,7 @@ export class Input extends React.Component {
               placeholder={this.props.placeholder}
               min={this.props.min}
               max={this.props.max}
+              name={this.props.name}
 
               onChange={(event) => this.handleOnChange(event)}
               onFocus={() => this.handleOnFocus()}
@@ -150,6 +166,7 @@ export class Input extends React.Component {
             placeholder={this.props.placeholder}
             min={this.props.min}
             max={this.props.max}
+            name={this.props.name}
 
             onChange={(event) => this.handleOnChange(event)}
             onFocus={() => this.handleOnFocus()}
@@ -189,6 +206,7 @@ Input.defaultProps = {
   'data-warning-color': '#D50000',
   max: -1,
   min: -1,
+  name: '',
   placeholder: '',
   required: 'false',
 };
@@ -201,6 +219,7 @@ Input.propTypes = {
   changeInputFocus: PropTypes.func.isRequired,
   changeInputValidation: PropTypes.func.isRequired,
   changeInputValue: PropTypes.func.isRequired,
+  changeInputChecked: PropTypes.func.isRequired,
   className: PropTypes.string,
   'data-form-id': PropTypes.string.isRequired,
   'data-valid-color': PropTypes.string.isRequired,
@@ -210,6 +229,7 @@ Input.propTypes = {
   input: PropTypes.any.isRequired, // eslint-disable-line
   max: PropTypes.number,
   min: PropTypes.number,
+  name: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.string,
   type: PropTypes.string,
@@ -223,6 +243,7 @@ const matchDispatchToProps = (dispatch) =>
     changeInputValue,
     changeInputFocus,
     changeInputValidation,
+    changeInputChecked,
     changeInputError,
   }, dispatch));
 

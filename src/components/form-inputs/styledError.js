@@ -7,7 +7,22 @@ const StyledError = styled.label`
     }
 
     return 'none';
-  }}
+  }};
+  width: auto;
+  float: ${(props) => {
+    if (props.htmlFor === 'checkbox') {
+      return 'right';
+    }
+
+    return 'none';
+  }};
+  margin: ${(props) => {
+    if (props.htmlFor === 'checkbox') {
+      return '12px';
+    }
+
+    return '0';
+  }};
 `;
 
 export default StyledError;

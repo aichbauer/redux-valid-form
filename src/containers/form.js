@@ -31,7 +31,9 @@ export class Form extends React.Component {
               const id = child.props.id !== '' ? child.props.id : `form-${this.props.id}-child-${idx}`;
               const error = [];
               const disabled = true;
+              const name = child.props.name || '';
               const value = child.props.value || '';
+              const checked = child.props.checked || false;
               const isFocused = false;
               const isValid = false;
               const inputType = child.type.name;
@@ -40,7 +42,9 @@ export class Form extends React.Component {
                 id,
                 this.props.id,
                 error,
+                name,
                 value,
+                checked,
                 isFocused,
                 isValid,
                 inputType,

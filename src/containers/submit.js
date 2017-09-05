@@ -13,11 +13,12 @@ export class Submit extends React.Component {
     let form = {};
 
     this.props.input.map((item) => {
+      console.log(item);
       if (item.isValid !== undefined &&
         item.formId === this.props['data-form-id'] &&
         item.inputType !== 'Button') {
         form = Object.assign({}, form, {
-          [item.id]: item.value,
+          [item.id]: item.inputType === 'Checkbox' || 'Radio' ? item.checked : item.value,
         });
       }
 

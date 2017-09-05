@@ -7,14 +7,24 @@ const StyledInput = styled.input`
   transition: all 0.3s ease-in-out;
   outline: none;
   padding: ${(props) => {
-    if (props.type !== 'date' &&
+    if (props.type === 'checkbox' ||
+      props.type === 'radio') {
+      return '20px 20px 200px 0px';
+    } else if (props.type !== 'date' &&
       props.type !== 'time') {
       return '7px 0px 7px 3px';
     }
 
     return '5px 8px 5px 3px';
   }}
-  margin: 7px 1px 7px 0px;
+  margin: ${(props) => {
+    if (props.type === 'checkbox' ||
+      props.type === 'radio') {
+      return '15px';
+    }
+
+    return '7px 1px 7px 0px;';
+  }}
   border: ${(props) => {
     if (props['data-is-valid'] && props['data-is-focused']) {
       return `1px solid ${props['data-valid-color']}`;
@@ -33,7 +43,22 @@ const StyledInput = styled.input`
 
     return 'none';
   }};
-  width: 95%;
+  width: ${(props) => {
+    if (props.type === 'checkbox' ||
+      props.type === 'radio') {
+      return 'auto';
+    }
+
+    return '95%';
+  }};
+  float: ${(props) => {
+    if (props.type === 'checkbox' ||
+      props.type === 'radio') {
+      return 'left';
+    }
+
+    return 'none';
+  }};
 `;
 
 export default StyledInput;

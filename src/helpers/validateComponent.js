@@ -1,7 +1,12 @@
 import inputIs from 'input-is';
 
 const validateComponent = (props, value) => {
-  if (props.type === 'date') {
+  if (props.type === 'checkbox' || props.type === 'radio') {
+    console.log(props.value);
+    return (
+      (props.required === 'true' ? value : true)
+    );
+  } else if (props.type === 'date') {
     if (props.required === 'true') {
       return (
         (props.required === 'true' ? inputIs.filled(value) : true) &&

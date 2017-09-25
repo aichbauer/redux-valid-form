@@ -15,7 +15,7 @@ test('Input with all props set', (t) => {
         id="test-id"
         className="test-class"
         placeholder="test-placeholder"
-        required="true"
+        required
         value="test"
         min={2}
         max={10}
@@ -33,7 +33,7 @@ test('Input with all props set', (t) => {
   t.is(inputWapper.props().max, 10);
   t.is(inputWapper.props().min, 2);
   t.is(inputWapper.props().placeholder, 'test-placeholder');
-  t.is(inputWapper.props().required, 'true');
+  t.is(inputWapper.props().required, true);
 });
 
 test('Input with no props set', (t) => {
@@ -55,7 +55,5 @@ test('Input with no props set', (t) => {
   t.is(inputWapper.props().max, -1);
   t.is(inputWapper.props().min, -1);
   t.is(inputWapper.props().placeholder, '');
-  t.is(inputWapper.props().required, 'false');
+  t.is(inputWapper.props().required, false);
 });
-
-

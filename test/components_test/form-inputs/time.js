@@ -13,7 +13,7 @@ test('Time | default props', (t) => {
     className: '',
     id: '',
     placeholder: 'hh:mm',
-    required: 'false',
+    required: false,
     value: '',
   });
 });
@@ -25,7 +25,7 @@ test('Time | all props filled', (t) => {
       data-form-id="test-form-id"
       id="test-id"
       placeholder="test-placeholder"
-      required="true"
+      required
       value="12:12"
     />,
   );
@@ -36,7 +36,7 @@ test('Time | all props filled', (t) => {
     className: 'test-class',
     id: 'test-id',
     placeholder: 'test-placeholder',
-    required: 'true',
+    required: true,
     value: '12:12',
   });
 });

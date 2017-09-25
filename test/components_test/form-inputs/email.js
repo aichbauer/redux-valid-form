@@ -13,7 +13,7 @@ test('Email | default props', (t) => {
     className: '',
     id: '',
     placeholder: 'john@doe.com',
-    required: 'false',
+    required: false,
     value: '',
   });
 });
@@ -25,7 +25,7 @@ test('Email | all props filled', (t) => {
       data-form-id="test-form-id"
       id="test-id"
       placeholder="test-placeholder"
-      required="true"
+      required
       value="example@example.com"
     />,
   );
@@ -36,7 +36,7 @@ test('Email | all props filled', (t) => {
     className: 'test-class',
     id: 'test-id',
     placeholder: 'test-placeholder',
-    required: 'true',
+    required: true,
     value: 'example@example.com',
   });
 });

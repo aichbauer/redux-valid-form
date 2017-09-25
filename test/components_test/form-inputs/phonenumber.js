@@ -13,7 +13,7 @@ test('Phonenumber | default props', (t) => {
     className: '',
     id: '',
     placeholder: '+1 23456789',
-    required: 'false',
+    required: false,
     value: '',
     min: -1,
     max: -1,
@@ -27,7 +27,7 @@ test('Phonenumber | all props filled', (t) => {
       data-form-id="test-form-id"
       id="test-id"
       placeholder="test-placeholder"
-      required="true"
+      required
       value="01234567890"
       min={8}
       max={30}
@@ -40,7 +40,7 @@ test('Phonenumber | all props filled', (t) => {
     className: 'test-class',
     id: 'test-id',
     placeholder: 'test-placeholder',
-    required: 'true',
+    required: true,
     value: '01234567890',
     min: 8,
     max: 30,

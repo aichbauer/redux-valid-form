@@ -9,8 +9,10 @@ test('ADD_INPUT | to empty state', (t) => {
     formId: '1',
     error: 'testerror',
     value: 'testvalue',
+    checked: false,
     isFocused: true,
     isValid: false,
+    name: 'testname',
     inputType: 'text',
   });
 
@@ -20,8 +22,10 @@ test('ADD_INPUT | to empty state', (t) => {
       formId: '1',
       error: 'testerror',
       value: 'testvalue',
+      checked: false,
       isFocused: true,
       isValid: false,
+      name: 'testname',
       inputType: 'text',
     },
   ]);
@@ -30,11 +34,11 @@ test('ADD_INPUT | to empty state', (t) => {
 test('ADD_INPUT | to filled state', (t) => {
   const state = inputReducer(
     [
-      { id: '1', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
-      { id: '2', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
-      { id: '3', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
-      { id: '4', formId: '1', error: 'testerror', value: 'testvalue', isFocused: true, isValid: false, inputType: 'text' },
-      { id: '5', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+      { id: '1', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+      { id: '2', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+      { id: '3', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+      { id: '4', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: true, isValid: true, name: 'testname', inputType: 'text' },
+      { id: '5', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
     ],
     {
       type: 'ADD_INPUT',
@@ -42,19 +46,21 @@ test('ADD_INPUT | to filled state', (t) => {
       formId: '1',
       error: 'testerror',
       value: 'testvalue',
+      checked: true,
       isFocused: false,
       isValid: true,
+      name: 'testname',
       inputType: 'text',
     },
   );
 
   t.deepEqual(state, [
-    { id: '1', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
-    { id: '2', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
-    { id: '3', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
-    { id: '4', formId: '1', error: 'testerror', value: 'testvalue', isFocused: true, isValid: false, inputType: 'text' },
-    { id: '5', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
-    { id: '6', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
+    { id: '1', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+    { id: '2', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+    { id: '3', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+    { id: '4', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: true, isValid: true, name: 'testname', inputType: 'text' },
+    { id: '5', formId: '1', error: 'testerror', value: 'testvalue', checked: false, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
+    { id: '6', formId: '1', error: 'testerror', value: 'testvalue', checked: true, isFocused: false, isValid: true, name: 'testname', inputType: 'text' },
   ]);
 });
 
@@ -154,6 +160,31 @@ test('CHANGE_INPUT_VALUE', (t) => {
     { id: '2', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
     { id: '3', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
     { id: '4', formId: '1', error: 'testerror', value: 'CHANGED', isFocused: false, isValid: false, inputType: 'text' },
+    { id: '5', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+  ]);
+});
+
+test('CHANGE_INPUT_CHANGED', (t) => {
+  const state = inputReducer(
+    [
+      { id: '1', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
+      { id: '2', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
+      { id: '3', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+      { id: '4', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+      { id: '5', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+    ],
+    {
+      type: 'CHANGE_INPUT_CHECKED',
+      id: '4',
+      checked: true,
+    },
+  );
+
+  t.deepEqual(state, [
+    { id: '1', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
+    { id: '2', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: true, inputType: 'text' },
+    { id: '3', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
+    { id: '4', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text', checked: true },
     { id: '5', formId: '1', error: 'testerror', value: 'testvalue', isFocused: false, isValid: false, inputType: 'text' },
   ]);
 });

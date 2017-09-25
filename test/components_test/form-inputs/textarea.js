@@ -13,7 +13,7 @@ test('Textarea | default props', (t) => {
     className: '',
     id: '',
     placeholder: '',
-    required: 'false',
+    required: false,
     value: '',
     min: -1,
     max: -1,
@@ -27,7 +27,7 @@ test('Textarea | all props filled', (t) => {
       data-form-id="test-form-id"
       id="test-id"
       placeholder="test-placeholder"
-      required="true"
+      required
       value="test-value"
       min={8}
       max={30}
@@ -40,7 +40,7 @@ test('Textarea | all props filled', (t) => {
     className: 'test-class',
     id: 'test-id',
     placeholder: 'test-placeholder',
-    required: 'true',
+    required: true,
     value: 'test-value',
     min: 8,
     max: 30,

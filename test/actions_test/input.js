@@ -6,15 +6,17 @@ import {
   changeInputFocus,
   changeInputValidation,
   changeInputValue,
+  changeInputChecked,
   resetInputs,
 } from '../../src/actions/input';
 
 test('addInput returns type: ADD_INPUT', (t) => {
-  t.deepEqual(addInput('1', '1', 'testerror', 'testvalue', false, true, false, 'text', {}), {
+  t.deepEqual(addInput('1', '1', 'testerror', 'testname', 'testvalue', false, true, false, 'text', {}), {
     type: 'ADD_INPUT',
     id: '1',
     formId: '1',
     error: 'testerror',
+    name: 'testname',
     value: 'testvalue',
     checked: false,
     isFocused: true,
@@ -52,6 +54,14 @@ test('changeInputValue returns type: CHANGE_INPUT_VALUE', (t) => {
     type: 'CHANGE_INPUT_VALUE',
     id: '1',
     value: 'testvalue',
+  });
+});
+
+test('changeInputChecked returns type: CHANGE_INPUT_CHECKED', (t) => {
+  t.deepEqual(changeInputChecked('1', false), {
+    type: 'CHANGE_INPUT_CHECKED',
+    id: '1',
+    checked: false,
   });
 });
 

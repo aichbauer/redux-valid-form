@@ -53,3 +53,31 @@ test('StyledInput | time - invalid and not focused', (t) => {
   t.is(styledInputWrapper.props().type, 'time');
 });
 
+test('StyledInput | checkbox - invalid and not focused', (t) => {
+  const styledInputWrapper = shallow(
+    <StyledInput
+      type="checkbox"
+      data-is-valid={false}
+      data-is-focused={false}
+    />,
+  );
+
+  t.is(styledInputWrapper.props()['data-is-valid'], false);
+  t.is(styledInputWrapper.props()['data-is-focused'], false);
+  t.is(styledInputWrapper.props().type, 'checkbox');
+});
+
+test('StyledInput | radio - invalid and not focused', (t) => {
+  const styledInputWrapper = shallow(
+    <StyledInput
+      type="radio"
+      data-is-valid={false}
+      data-is-focused={false}
+    />,
+  );
+
+  t.is(styledInputWrapper.props()['data-is-valid'], false);
+  t.is(styledInputWrapper.props()['data-is-focused'], false);
+  t.is(styledInputWrapper.props().type, 'radio');
+});
+

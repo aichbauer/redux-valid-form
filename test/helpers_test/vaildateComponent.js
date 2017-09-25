@@ -2,10 +2,28 @@ import test from 'ava';
 
 import validateComponent from '../../src/helpers/validateComponent';
 
+test('checkbox | not checked but required', (t) => {
+  const validComponent = validateComponent({
+    type: 'checkbox',
+    required: true,
+  }, false);
+
+  t.is(validComponent, false);
+});
+
+test('radio | checked and required', (t) => {
+  const validComponent = validateComponent({
+    type: 'radio',
+    required: true,
+  }, true);
+
+  t.is(validComponent, true);
+});
+
 test('date | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'date',
-    required: 'true',
+    required: true,
   }, '');
 
   t.is(validComponent, false);
@@ -14,7 +32,7 @@ test('date | not filled but required', (t) => {
 test('date | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'date',
-    required: 'true',
+    required: true,
   }, '12/12/1992');
 
   t.is(validComponent, true);
@@ -24,7 +42,7 @@ test('date | filled and required', (t) => {
 test('date | not required and not filled', (t) => {
   const validComponent = validateComponent({
     type: 'date',
-    required: 'false',
+    required: false,
   }, '');
 
   t.is(validComponent, true);
@@ -33,7 +51,7 @@ test('date | not required and not filled', (t) => {
 test('datetime | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'datetime',
-    required: 'true',
+    required: true,
   }, '');
 
   t.is(validComponent, false);
@@ -42,7 +60,7 @@ test('datetime | not filled but required', (t) => {
 test('datetime | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'datetime',
-    required: 'true',
+    required: true,
   }, '12/12/1992 12:12:12');
 
   t.is(validComponent, true);
@@ -52,7 +70,7 @@ test('datetime | filled and required', (t) => {
 test('datetime | not filled and not required', (t) => {
   const validComponent = validateComponent({
     type: 'datetime',
-    required: 'false',
+    required: false,
   }, '');
 
   t.is(validComponent, true);
@@ -61,7 +79,7 @@ test('datetime | not filled and not required', (t) => {
 test('email | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'email',
-    required: 'true',
+    required: true,
   }, '');
 
   t.is(validComponent, false);
@@ -70,7 +88,7 @@ test('email | not filled but required', (t) => {
 test('email | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'email',
-    required: 'true',
+    required: true,
   }, 'example@example.com');
 
   t.is(validComponent, true);
@@ -80,7 +98,7 @@ test('email | filled and required', (t) => {
 test('email | not filled and not required', (t) => {
   const validComponent = validateComponent({
     type: 'email',
-    required: 'false',
+    required: false,
   }, '');
 
   t.is(validComponent, true);
@@ -89,7 +107,7 @@ test('email | not filled and not required', (t) => {
 test('phonenumber | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'phonenumber',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, '');
@@ -100,7 +118,7 @@ test('phonenumber | not filled but required', (t) => {
 test('phonenumber | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'phonenumber',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, '+123123123123');
@@ -111,7 +129,7 @@ test('phonenumber | filled and required', (t) => {
 test('phonenumber | filled and required, but more than max', (t) => {
   const validComponent = validateComponent({
     type: 'phonenumber',
-    required: 'true',
+    required: true,
     min: -1,
     max: 7,
   }, '+123123123123');
@@ -122,7 +140,7 @@ test('phonenumber | filled and required, but more than max', (t) => {
 test('phonenumber | filled and required, but less than min', (t) => {
   const validComponent = validateComponent({
     type: 'phonenumber',
-    required: 'true',
+    required: true,
     min: 7,
     max: -1,
   }, '+12313');
@@ -133,7 +151,7 @@ test('phonenumber | filled and required, but less than min', (t) => {
 test('phonenumber | not filled and not required', (t) => {
   const validComponent = validateComponent({
     type: 'phonenumber',
-    required: 'false',
+    required: false,
     min: -1,
     max: -1,
   }, '');
@@ -141,10 +159,54 @@ test('phonenumber | not filled and not required', (t) => {
   t.is(validComponent, true);
 });
 
+test('number | not filled and not required', (t) => {
+  const validComponent = validateComponent({
+    type: 'number',
+    required: false,
+    min: -1,
+    max: -1,
+  }, '');
+
+  t.is(validComponent, true);
+});
+
+test('number | not filled and but required', (t) => {
+  const validComponent = validateComponent({
+    type: 'number',
+    required: true,
+    min: -1,
+    max: -1,
+  }, '');
+
+  t.is(validComponent, false);
+});
+
+test('number | filled and required, but min and max', (t) => {
+  const validComponent = validateComponent({
+    type: 'number',
+    required: true,
+    min: 3,
+    max: 4,
+  }, '1234');
+
+  t.is(validComponent, true);
+});
+
+test('number | filled and but required', (t) => {
+  const validComponent = validateComponent({
+    type: 'number',
+    required: true,
+    min: -1,
+    max: -1,
+  }, '12');
+
+  t.is(validComponent, true);
+});
+
 test('text | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'text',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, '');
@@ -155,7 +217,7 @@ test('text | not filled but required', (t) => {
 test('text | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'text',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, 'abcdef');
@@ -166,7 +228,7 @@ test('text | filled and required', (t) => {
 test('text | filled and required, but more than max', (t) => {
   const validComponent = validateComponent({
     type: 'text',
-    required: 'true',
+    required: true,
     min: -1,
     max: 6,
   }, 'abcdefg');
@@ -177,7 +239,7 @@ test('text | filled and required, but more than max', (t) => {
 test('text | filled and required, but less than min', (t) => {
   const validComponent = validateComponent({
     type: 'text',
-    required: 'true',
+    required: true,
     min: 7,
     max: -1,
   }, 'abcdef');
@@ -188,7 +250,7 @@ test('text | filled and required, but less than min', (t) => {
 test('text | not filled and not required', (t) => {
   const validComponent = validateComponent({
     type: 'text',
-    required: 'false',
+    required: false,
     min: -1,
     max: -1,
   }, '');
@@ -199,7 +261,7 @@ test('text | not filled and not required', (t) => {
 test('textarea | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'textarea',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, '');
@@ -210,7 +272,7 @@ test('textarea | not filled but required', (t) => {
 test('textarea | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'textarea',
-    required: 'true',
+    required: true,
     min: -1,
     max: -1,
   }, 'abcdef');
@@ -221,7 +283,7 @@ test('textarea | filled and required', (t) => {
 test('textarea | filled and required, but more than max', (t) => {
   const validComponent = validateComponent({
     type: 'textarea',
-    required: 'true',
+    required: true,
     min: -1,
     max: 6,
   }, 'abcdefg');
@@ -232,7 +294,7 @@ test('textarea | filled and required, but more than max', (t) => {
 test('textarea | filled and required, but less than min', (t) => {
   const validComponent = validateComponent({
     type: 'textarea',
-    required: 'true',
+    required: true,
     min: 7,
     max: -1,
   }, 'abcdef');
@@ -243,7 +305,19 @@ test('textarea | filled and required, but less than min', (t) => {
 test('textarea | not filled and not required', (t) => {
   const validComponent = validateComponent({
     type: 'textarea',
-    required: 'false',
+    required: false,
+    min: -1,
+    max: -1,
+  }, '');
+
+  t.is(validComponent, true);
+});
+
+
+test('password | not filled and not required', (t) => {
+  const validComponent = validateComponent({
+    type: 'password',
+    required: false,
     min: -1,
     max: -1,
   }, '');
@@ -254,7 +328,7 @@ test('textarea | not filled and not required', (t) => {
 test('time | not filled but required', (t) => {
   const validComponent = validateComponent({
     type: 'time',
-    required: 'true',
+    required: true,
   }, '');
 
   t.is(validComponent, false);
@@ -263,7 +337,7 @@ test('time | not filled but required', (t) => {
 test('time | filled and required', (t) => {
   const validComponent = validateComponent({
     type: 'time',
-    required: 'true',
+    required: true,
   }, '12:12');
 
   t.is(validComponent, true);
@@ -273,7 +347,7 @@ test('time | filled and required', (t) => {
 test('time | not required and not filled', (t) => {
   const validComponent = validateComponent({
     type: 'time',
-    required: 'false',
+    required: false,
   }, '');
 
   t.is(validComponent, true);

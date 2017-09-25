@@ -24,3 +24,11 @@ test('StyledError | invalid and focused', (t) => {
   t.is(styledErrorWrapper.props()['data-is-valid'], false);
   t.is(styledErrorWrapper.props()['data-is-focused'], true);
 });
+
+test('StyledError | valid, focused and htmlFor = checkbox', (t) => {
+  const styledErrorWrapper = shallow(<StyledError data-is-valid={true} data-is-focused={true} htmlFor="checkbox" />);
+
+  t.is(styledErrorWrapper.props()['data-is-valid'], true);
+  t.is(styledErrorWrapper.props()['data-is-focused'], true);
+  t.is(styledErrorWrapper.props().htmlFor, 'checkbox');
+});

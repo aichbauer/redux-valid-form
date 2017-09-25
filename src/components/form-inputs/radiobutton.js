@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import Input from '../../containers/input';
 
 const Radio = (props) => (
-  <div>
+  <div style={{ display: 'flex' }}>
     <Input
       type={props.type}
-      style={{
-        float: 'left',
-        width: '48%',
-      }}
 
       data-form-id={props['data-form-id']}
 
@@ -21,8 +17,8 @@ const Radio = (props) => (
       name={props.name}
       checked={props.checked}
     />
-    <label style={{ float: 'left', width: 'auto', textAlign: 'left', margin: '12px' }} htmlFor={props['data-form-id']}>{props.value}</label>
-  </div>
+    <label style={{ margin: '13px' }} htmlFor={props['data-form-id']}>{props.value}</label>
+  </div >
 );
 
 Radio.defaultProps = {
@@ -30,7 +26,7 @@ Radio.defaultProps = {
   'data-form-id': '',
   id: '',
   name: '',
-  required: 'false',
+  required: false,
   type: 'radio',
   value: '',
   checked: false,
@@ -41,7 +37,7 @@ Radio.propTypes = {
   'data-form-id': PropTypes.string.isRequired,
   id: PropTypes.string,
   name: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
   checked: PropTypes.bool,

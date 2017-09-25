@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import Input from '../../containers/input';
 
 const Checkbox = (props) => (
-  <div>
+  <div style={{ display: 'flex' }}>
     <Input
       type={props.type}
-      style={{
-        float: 'left',
-        width: '48%',
-      }}
 
       data-form-id={props['data-form-id']}
 
@@ -21,7 +17,7 @@ const Checkbox = (props) => (
       name={props.name}
       checked={props.checked}
     />
-    <label style={{ float: 'left', width: 'auto', textAlign: 'left', margin: '12px' }} htmlFor={props['data-form-id']}>{props.value}</label>
+    <label style={{ margin: '12px' }} htmlFor={props['data-form-id']}>{props.value}</label>
   </div>
 );
 
@@ -30,7 +26,7 @@ Checkbox.defaultProps = {
   'data-form-id': '',
   id: '',
   name: '',
-  required: 'false',
+  required: false,
   type: 'checkbox',
   value: '',
   checked: false,
@@ -41,7 +37,7 @@ Checkbox.propTypes = {
   'data-form-id': PropTypes.string.isRequired,
   id: PropTypes.string,
   name: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
   checked: PropTypes.bool,

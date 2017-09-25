@@ -9,13 +9,11 @@ export const addButton = (id, formId, disabled) => ({
   disabled,
 });
 
-export const changeButtonValidation = (id, disabled) => {
-  return {
-    type: CHANGE_BUTTON_VALIDATION,
-    id,
-    disabled,
-  };
-};
+export const changeButtonValidation = (id, disabled) => ({
+  type: CHANGE_BUTTON_VALIDATION,
+  id,
+  disabled,
+});
 
 export const resetButtons = () => ({
   type: RESET_BUTTONS,

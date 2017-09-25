@@ -40,6 +40,7 @@ After installation you have to import and add `reduxValidButton`, `reduxValidFor
 **Components:**
 
 - [Form](#form)
+- [Checkbox](#checkbox)
 - [Button](#button)
 - [Date](#date)
 - [Datetime](#datetime)
@@ -47,6 +48,7 @@ After installation you have to import and add `reduxValidButton`, `reduxValidFor
 - [Number](#number)
 - [Password](#password)
 - [Phonenumber](#phonenumber)
+- [Radiobutton](#radiobutton)
 - [Text](#text)
 - [Textarea](#textarea)
 - [Time](#time)
@@ -54,9 +56,11 @@ After installation you have to import and add `reduxValidButton`, `reduxValidFor
 **Props:**
 
 - [id](#id)
+- [checked](#checked)
 - [className](#className)
 - [max](#max)
 - [min](#min)
+- [name](#name)
 - [placeholder](#placeholder)
 - [required](#required)
 - [value](#value)
@@ -106,9 +110,9 @@ import {
 
 const MyForm = () => (
   <Form id="my-form-id">
-    <Email id="email" required="true" />
+    <Email id="email" required />
     <Date date="date" />
-    <Text id="text" min={3} max={12} required="true" />
+    <Text id="text" min={3} max={12} required />
     <Submit
       value="Click Me!"
       onClick={(validFormInputValues) => console.log(validFormInputValues)}
@@ -177,7 +181,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 )
-
 ```
 
 ## Components
@@ -207,6 +210,44 @@ const MyForm = () => (
 export default MyForm;
 ```
 
+
+### Checkbox
+
+**Props:**
+
+- [id](#id): string
+- [checked](#checked): boolean
+- [className](#className): string
+- [name](#name): string
+- [required](#required): boolean
+- [value](#value): string
+
+
+```js
+import { Form, Checkbox } from 'redux-valid-form'
+
+const MyForm = () => (
+  <Form
+    id="my-form-id"
+    className="my-form-class"
+  >
+    {/*
+      * Value gets displayed next to the checkbox
+      */}
+    <Checkbox
+      id="my-checkbox-input"
+      checked
+      className="my-checkbox-class"
+      name="my-checkbox-name"
+      required
+      value="my-checkbox-value"
+    />
+  <Form>
+);
+
+export default MyForm;
+```
+
 ### Date
 
 **Props:**
@@ -214,7 +255,7 @@ export default MyForm;
 - [id](#id): string
 - [className](#className): string
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -229,7 +270,7 @@ const MyForm = () => (
       id="my-date-input"
       classNmae="my-date-class"
       placeholder="my-date-placeholder"
-      required="true"
+      required
       value="05/06/2017"
     />
   <Form>
@@ -245,7 +286,7 @@ export default MyForm;
 - [id](#id): string
 - [className](#className): string
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -260,7 +301,7 @@ const MyForm = () => (
       id="my-datetime-input"
       classNmae="my-datetime-class"
       placeholder="my-datetime-placeholder"
-      required="true"
+      required
       value="05/06/2017"
     />
   <Form>
@@ -276,7 +317,7 @@ export default MyForm;
 - [id](#id): string
 - [className](#className): string
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -291,7 +332,7 @@ const MyForm = () => (
       id="my-email-input"
       classNmae="my-email-class"
       placeholder="my-email-placeholder"
-      required="true"
+      required
       value="john@doe.com"
     />
   <Form>
@@ -300,7 +341,6 @@ const MyForm = () => (
 export default MyForm;
 ```
 
-
 ### Number
 
 **Props:**
@@ -308,7 +348,7 @@ export default MyForm;
 - [id](#id): string
 - [className](#className): string
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -323,7 +363,7 @@ const MyForm = () => (
       id="my-number-input"
       classNmae="my-number-class"
       placeholder="my-number-placeholder"
-      required="true"
+      required
       value=""
     />
   <Form>
@@ -341,7 +381,7 @@ export default MyForm;
 - [max](#max): number
 - [min](#min): number
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -358,8 +398,54 @@ const MyForm = () => (
       max={10}
       min={3}
       placeholder="my-password-placeholder"
-      required="true"
+      required
       value="secret"
+    />
+  <Form>
+);
+
+export default MyForm;
+```
+
+### Radiobutton
+
+**Props:**
+
+- [id](#id): string
+- [checked](#checked): boolean
+- [className](#className): string
+- [name](#name): string
+- [required](#required): boolean
+- [value](#value): string
+
+```js
+import { Form, Checkbox } from 'redux-valid-form'
+
+const MyForm = () => (
+  <Form
+    id="my-form-id"
+    className="my-form-class"
+  >
+  {/*
+    * value gets displayed next to the radiobutton
+    *
+    * if you want to group radiobuttons
+    * give them the same name
+    */}
+    <Radio
+      id="my-radio-input-1"
+      checked
+      className="my-radio-class"
+      name="my-radio-name"
+      required
+      value="my-radio-value"
+    />
+    <Radio
+      id="my-radio-input-2"
+      className="my-radio-class"
+      name="my-radio-name"
+      required
+      value="my-radio-value"
     />
   <Form>
 );
@@ -373,10 +459,10 @@ export default MyForm;
 
 - [id](#id): string
 - [className](#className): string
-- [max](#max)
-- [min](#min)
+- [max](#max): number
+- [min](#min): number
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -393,7 +479,7 @@ const MyForm = () => (
       max={10}
       min={3}
       placeholder="my-text-placeholder"
-      required="true"
+      required
       value="lorum ipsum"
     />
   <Form>
@@ -408,10 +494,10 @@ export default MyForm;
 
 - [id](#id): string
 - [className](#className): string
-- [max](#max)
-- [min](#min)
+- [max](#max): number
+- [min](#min): number
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -428,7 +514,7 @@ const MyForm = () => (
       max={10}
       min={3}
       placeholder="my-textarea-placeholder"
-      required="true"
+      required
       value="lorum ipsum..."
     />
   <Form>
@@ -444,7 +530,7 @@ export default MyForm;
 - [id](#id): string
 - [className](#className): string
 - [placeholder](#placeholder): string
-- [required](#required): string
+- [required](#required): boolean
 - [value](#value): string
 
 ```js
@@ -459,7 +545,7 @@ const MyForm = () => (
       id="my-time-input"
       classNmae="my-time-class"
       placeholder="my-time-placeholder"
-      required="true"
+      required
       value="12:12"
     />
   <Form>
@@ -523,6 +609,16 @@ export default MyForm;
 
 **Required:** `true`
 
+### checked
+
+> Only for `Checkbox`, and `Radiobutton` 
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Required:** `false`
+
 ### className
 
 > For all components
@@ -553,6 +649,16 @@ export default MyForm;
 
 **Required:** `false`
 
+### name
+
+> Only for `Checkbox`, and `Radiobutton`
+
+**Type:** `string`
+
+**Default:** `no default`
+
+**Required:** `false`
+
 ### placeholder
 
 > Not for `Form`, and `Submit` components
@@ -575,9 +681,9 @@ export default MyForm;
 
 > Not for `Form` components
 
-**Type:** `string`
+**Type:** `boolean`
 
-**Default:** `no default`
+**Default:** `false`
 
 **Required:** `false`
 

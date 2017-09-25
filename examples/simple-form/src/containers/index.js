@@ -57,18 +57,18 @@ class Index extends React.Component {
             Redux Valid Form
           </Title>
           <Form id="1">
-            <Checkbox id="checkbox" value="Vehicle" name="Vehicle" required="true" />
+            <Checkbox id="checkbox" value="Vehicle" name="Vehicle" required checked />
             <Radio id="radio-1" value="Car" name="vehicle" checked />
             <Radio id="radio-2" value="Bicycle" name="vehicle" />
-            {/* <Date id="date" required="true" />
-            <Datetime id="datetime" required="true" />
-            <Email id="email" required="true" />
-            <Number id="number" required="true" min={2} max={4} />
-            <Password id="password" required="true" min={8} max={12} />
-            <Phonenumber id="phonenumber" required="true" />
-            <Text id="text" required="true" min={5} max={20} />
-            <Textarea id="textarea" required="true" />
-            <Time id="time" required="true" />*/}
+            <Radio id="radio-3" value="Rollerblade" name="vehicle" />
+            <Date id="date" required />
+            <Datetime id="datetime" required />
+            <Email id="email" required />
+            <Number id="number" min={2} max={4} required />
+            <Password id="password" min={8} max={12} required />
+            <Phonenumber id="phonenumber" required />
+            <Text id="text" min={4} max={10} required />
+            <Textarea id="textarea" min={4} max={10} required />
             <Button value="Click me!" onClick={(results) => this.handleOnClick(results)} />
           </Form>
         </Wrapper>

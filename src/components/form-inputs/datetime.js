@@ -22,7 +22,7 @@ Datetime.defaultProps = {
   'data-form-id': '',
   id: '',
   placeholder: 'MM/DD/YYYY hh:mm:ss',
-  required: 'false',
+  required: false,
   type: 'datetime',
   value: '',
 };
@@ -32,7 +32,7 @@ Datetime.propTypes = {
   'data-form-id': PropTypes.string.isRequired,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
 };

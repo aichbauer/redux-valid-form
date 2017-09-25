@@ -37,12 +37,6 @@ export class Input extends React.Component {
       event.target.type === 'radio') {
       isValid = validateComponent(this.props, event.target.checked);
       this.props.changeInputChecked(id, event.target.checked);
-      this.props.input.forEach((item) => {
-        if (item.name === event.target.name &&
-          item.id !== id) {
-          this.props.changeInputChecked(item.id, false);
-        }
-      });
       this.props.changeInputError(id, componentWarningMessage(this.props, event.target.checked));
     } else {
       isValid = validateComponent(this.props, event.target.value);
@@ -55,6 +49,12 @@ export class Input extends React.Component {
     })
       .then(() => {
         const inputsAreValid = this.props.input.every((item) => {
+          if (item.inputType === 'Radio' && item.name === this.props.name && item.id !== this.props.id) {
+            isValid = validateComponent(item, false);
+            this.props.changeInputChecked(item.id, false);
+            this.props.changeInputError(item.id, componentWarningMessage(item, false));
+          }
+
           if (this.props['data-form-id'] === item.formId && item.inputType !== 'Button') {
             return item.isValid;
           }
@@ -78,9 +78,17 @@ export class Input extends React.Component {
       resolve(this.props.input.filter((i) => i.id === id));
     })
       .then((item) => {
-        const isValid = validateComponent(this.props, item[0].value);
+        let isValid = false;
 
-        this.props.changeInputError(id, componentWarningMessage(this.props, item[0].value));
+        if (item[0].type === 'checkbox' ||
+          item[0].type === 'radio') {
+          isValid = validateComponent(this.props, item[0].checked);
+          this.props.changeInputError(id, componentWarningMessage(this.props, item[0].checked));
+        } else {
+          isValid = validateComponent(this.props, item[0].value);
+          this.props.changeInputError(id, componentWarningMessage(this.props, item[0].value));
+        }
+
         this.props.changeInputValidation(id, isValid);
         this.props.changeInputFocus(id, true);
       });
@@ -93,10 +101,17 @@ export class Input extends React.Component {
       resolve(this.props.input.filter((i) => i.id === id));
     })
       .then((item) => {
-        const isValid = validateComponent(this.props, item[0].value);
+        let isValid = false;
 
+        if (item[0].type === 'checkbox' ||
+          item[0].type === 'radio') {
+          isValid = validateComponent(this.props, item[0].checked);
+          this.props.changeInputError(id, componentWarningMessage(this.props, item[0].checked));
+        } else {
+          isValid = validateComponent(this.props, item[0].value);
+          this.props.changeInputError(id, componentWarningMessage(this.props, item[0].value));
+        }
 
-        this.props.changeInputError(id, componentWarningMessage(this.props, item[0].value));
         this.props.changeInputValidation(id, isValid);
         this.props.changeInputFocus(id, false);
       });
@@ -110,9 +125,10 @@ export class Input extends React.Component {
       const isFocused = input[0].isFocused;
       const formId = input[0].formId;
       const error = input[0].error;
+
       if (this.props.type !== 'textarea') {
         return (
-          <div>
+          <div style={{ dixplay: 'flex' }}>
             <StyledInput
               type={this.props.type}
 
@@ -123,6 +139,7 @@ export class Input extends React.Component {
               data-form-id={formId}
 
               id={this.props.id}
+              defaultChecked={this.props.checked}
               className={this.props.className}
               required={this.props.required}
               value={value}
@@ -196,7 +213,9 @@ Input.defaultProps = {
   changeInputFocus: () => { },
   changeInputValidation: () => { },
   changeInputValue: () => { },
+  changeInputChecked: () => { },
   className: '',
+  checked: false,
   type: 'text',
   form: [],
   id: '',
@@ -208,7 +227,7 @@ Input.defaultProps = {
   min: -1,
   name: '',
   placeholder: '',
-  required: 'false',
+  required: false,
 };
 
 Input.propTypes = {
@@ -226,12 +245,13 @@ Input.propTypes = {
   'data-warning-color': PropTypes.string.isRequired,
   form: PropTypes.any, // eslint-disable-line
   id: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
   input: PropTypes.any.isRequired, // eslint-disable-line
   max: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
 };
 

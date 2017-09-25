@@ -51,14 +51,6 @@ const StyledInput = styled.input`
 
     return '95%';
   }};
-  float: ${(props) => {
-    if (props.type === 'checkbox' ||
-      props.type === 'radio') {
-      return 'left';
-    }
-
-    return 'none';
-  }};
 `;
 
 export default StyledInput;

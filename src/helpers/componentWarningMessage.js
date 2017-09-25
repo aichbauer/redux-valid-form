@@ -5,7 +5,7 @@ import warningMessage from 'warning-message';
 const componentWarningMessage = (props, value) => {
   const message = [];
 
-  if (props.required === 'true' && !inputIs.filled(value)) {
+  if (props.required && !inputIs.filled(value)) {
     message.push(<div key={`${props.type}-${props.id}-warning-required`}>{`- ${warningMessage().requiredField()}`}</div>);
   }
 
@@ -28,7 +28,7 @@ const componentWarningMessage = (props, value) => {
       message.push(<div key={`${props.type}-${props.id}-warning-max`}>{`- ${warningMessage().minChar(props.min)}`}</div>);
     }
     if (!inputIs.number(value)) {
-      message.push(<div key={`${props.type}-${props.id}-warning-email`}>{`- ${warningMessage().number()}`}</div>);
+      message.push(<div key={`${props.type}-${props.id}-warning-number`}>{`- ${warningMessage().number()}`}</div>);
     }
   } else if (props.type === 'phonenumber') {
     if (!inputIs.phonenumber(value)) {

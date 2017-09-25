@@ -22,7 +22,7 @@ Time.defaultProps = {
   'data-form-id': '',
   id: '',
   placeholder: 'hh:mm',
-  required: 'false',
+  required: false,
   type: 'time',
   value: '',
 };
@@ -32,7 +32,7 @@ Time.propTypes = {
   'data-form-id': PropTypes.string.isRequired,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
 };

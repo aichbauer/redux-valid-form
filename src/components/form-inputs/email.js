@@ -22,7 +22,7 @@ Email.defaultProps = {
   'data-form-id': '',
   id: '',
   placeholder: 'john@doe.com',
-  required: 'false',
+  required: false,
   type: 'email',
   value: '',
 };
@@ -32,7 +32,7 @@ Email.propTypes = {
   'data-form-id': PropTypes.string.isRequired,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
 };

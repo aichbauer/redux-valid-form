@@ -26,7 +26,7 @@ Phonenumber.defaultProps = {
   max: -1,
   min: -1,
   placeholder: '+1 23456789',
-  required: 'false',
+  required: false,
   type: 'phonenumber',
   value: '',
 };
@@ -38,7 +38,7 @@ Phonenumber.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
 };

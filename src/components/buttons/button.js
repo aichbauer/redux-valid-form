@@ -21,7 +21,7 @@ Button.defaultProps = {
   className: '',
   'data-form-id': '',
   id: '',
-  onClick: () => { },
+  onClick: /* istanbul ignore next: really hard to test*/ () => { },
   type: 'submit',
   value: '',
 };

@@ -26,7 +26,7 @@ Textarea.defaultProps = {
   max: -1,
   min: -1,
   placeholder: '',
-  required: 'false',
+  required: false,
   type: 'textarea',
   value: '',
 };
@@ -38,7 +38,7 @@ Textarea.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   placeholder: PropTypes.string,
-  required: PropTypes.string,
+  required: PropTypes.bool,
   type: PropTypes.string,
   value: PropTypes.string,
 };
